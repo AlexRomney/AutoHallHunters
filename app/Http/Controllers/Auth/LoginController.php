@@ -40,9 +40,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        $user = Auth::user();
-
-        if ($user->roles[0]['name'] == 'patient')
+        if (Auth::user()->hasRole('patient'))
         {
             return '/home';
         } else {
