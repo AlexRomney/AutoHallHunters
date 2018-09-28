@@ -70,7 +70,7 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole('patient');
-
+        
         return $user;
     }
 }

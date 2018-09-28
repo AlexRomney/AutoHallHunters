@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -73,8 +73,16 @@
         </nav>
 
         <main class="py-4">
+            <div class='container text-center'>
+                @include('flash::message')
+            </div>
+
             @yield('content')
         </main>
     </div>
+
+    <script>
+        $('div.alert').not('.alert-important').delay(4000).fadeOut(350);
+    </script>
 </body>
 </html>

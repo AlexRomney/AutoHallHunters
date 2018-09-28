@@ -40,10 +40,14 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if (Auth::user()->hasRole('patient'))
+        $user = Auth::user();
+
+        if ($user->hasRole('patient'))
         {
+            flash("WELCOME " . strtoupper($user->name))->success();
             return '/home';
         } else {
+            flash('WELCOME ADMIN USER')->success();
             return '/admin/appointments';
         }
     }
