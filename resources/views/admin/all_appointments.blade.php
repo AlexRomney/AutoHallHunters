@@ -6,6 +6,8 @@
         <div class="col-md-12 text-center">
             <h1> All Appointments </h1>
             <hr />
+
+            {{ $allAppointments }}
         </div>
     </div>
 </div>
