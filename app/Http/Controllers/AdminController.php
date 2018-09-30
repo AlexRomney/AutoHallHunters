@@ -13,6 +13,7 @@ class AdminController extends Controller
     public function __construct(Appointment $appointment)
     {
         $this->model = new AppointmentRepository($appointment);
+        $this->middleware('auth');
     }
 
     function allAppointments()

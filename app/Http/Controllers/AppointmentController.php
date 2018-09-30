@@ -14,36 +14,39 @@ class AppointmentController extends Controller
     public function __construct(Appointment $appointment)
     {
         $this->model = new AppointmentRepository($appointment);
+        $this->middleware('auth');
     }
 
-    public function index()
+    function index()
     {
         $userAppointments = $this->model->userAppointments(Auth::user()->id);
         return view('home', compact('userAppointments'));
     }
 
-    public function createAppointment()
+    function createAppointment()
     {
         return view('create_appointment');
     }
 
-    public function store(Request $request)
+    function store(Request $request)
     {
-        return $this->model->create($request->only($this->model->getModel()->fillable()));
+        $this->model->create($request->all());
+        return redirect('home');
     }
 
-    public function show($id)
+    function show($id)
     {
-        return $this->model->show($id);
+        $edit = $this->model->show($id);
+        return view('edit_appointment', compact('edit'));
     }
 
-    public function update(Request $request, $id)
+    function update(Request $request, $id)
     {
-        $this->model->update($request->only($this->model->getModel()->fillable()), $id);
-        return $this->model->find($id);
+        $this->model->update($request->all(), $id);
+        return redirect('home');
     }
 
-    public function destroy($id)
+    function destroy($id)
     {
         return $this->model->delete($id);
     }

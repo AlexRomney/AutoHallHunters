@@ -24,7 +24,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('physician');
             $table->string('appointment_date');
             $table->string('appointment_time');
-            $table->boolean('complete');
+            $table->boolean('complete')->default(0);
             $table->timestamps();
         });
     }

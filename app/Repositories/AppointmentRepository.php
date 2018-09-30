@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class AppointmentRepository implements AppointmentInterface
 {
@@ -30,12 +31,18 @@ class AppointmentRepository implements AppointmentInterface
 
     public function create(Array $data)
     {
-        return $this->model->create($data);
+        return $this->model->create([
+            'user_id' => Auth::user()->id,
+            'name' => $data['name'],
+            'physician' => $data['physician'],
+            'appointment_date' => $data['appointment_date'],
+            'appointment_time' => $data['appointment_time'] . ' ' . $data['time_of_day']
+        ]);
     }
 
     public function update(array $data, $id)
     {
-        $appointment = $this->find($id);
+        $appointment = $this->model->find($id);
         return $appointment->update($data);
     }
 
