@@ -17,12 +17,6 @@
                     <label for="name">Name</label>
                     <input type="text" name='name' value="{{ $edit->name }}" class="form-control" id="name" required>
                 </div>
-                @if ($errors->has('name'))
-                     <div class="alert alert-danger">
-                     <div class="fa fa-angle-up"></div>
-                     <strong>{{ $errors->first('name') }}</strong>
-                     </div>
-                 @endif
 
                  <div class="form-group">
                     <label for="physician">Physician</label>
@@ -32,12 +26,6 @@
                         <option value="Dr. Tim"> Dr. Tim </option>
                     </select>
                 </div>
-                @if ($errors->has('physician'))
-                     <div class="alert alert-danger">
-                     <div class="fa fa-angle-up"></div>
-                     <strong>{{ $errors->first('physician') }}</strong>
-                     </div>
-                @endif
 
                 <div class='form-group'>
                     <label for="appointment_date">Appointment Date</label>
@@ -56,6 +44,7 @@
                </div>
 
                 <button type='submit' class='btn btn-primary'> Submit </button>
+                <a href='/home' class='btn btn-danger'> Cancel </a>
             </form>
         </div>
     </div>

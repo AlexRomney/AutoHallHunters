@@ -21,4 +21,24 @@ class AdminController extends Controller
         $allAppointments = $this->model->all();
         return view('admin.all_appointments', compact('allAppointments'));
     }
+
+    function edit($id)
+    {
+        $edit = $this->model->edit($id);
+        return view('admin.edit_appointment', compact('edit'));
+    }
+
+    function update(Request $request, $id)
+    {
+        $update = $this->model->update($request->all(), $id);
+        flash("APPOINTMENT #$id HAS BEEN UPDATED")->success();
+        return redirect('admin/appointments');
+    }
+
+    function destroy($id)
+    {
+        $this->model->delete($id);
+        flash("APPOINTMENT #$id HAS BEEN DELETED")->error();
+        return redirect('admin/appointments');
+    }
 }

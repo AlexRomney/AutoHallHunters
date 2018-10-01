@@ -13,11 +13,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name' => 'patient']);
-        $role = Role::create(['name' => 'admin']);
 
         if (!User::where('email', 'timothy.withers@gmail.com')->exists())
         {
+            $role = Role::create(['name' => 'patient']);
+            $role = Role::create(['name' => 'admin']);
+            
             $user = User::create([
                 'name' => 'Tim Withers',
                 'email' => 'timothy.withers@gmail.com',

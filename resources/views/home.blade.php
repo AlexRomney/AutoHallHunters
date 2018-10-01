@@ -10,22 +10,41 @@
             <a href='/create-appointment' class='pull-right btn btn-primary'> Create </a>
         </div>
     </div>
-    <hr />
 
-    @if ($userAppointments->count())
+    <div class='row'>
         <div class='col-md-12'>
-            @foreach ($userAppointments as $apt)
-                <div style='display: flex; justify-content: space-between;'>
-                    <p> <a style='color: green;' href="/appointment/{{ $apt->id }}/edit">
-                        <span class="fas fa-pencil-alt"></span></a> Physician: {{ $apt->physician }} </p>
-                    <p> Patient: {{ $apt->name }} </p>
-                    <p> {{ $apt->appointment_date }} </p>
-                    <p> {{ $apt->appointment_time }} </p>
-                </div style='display: flex; justify-content: space-between;'>
-            @endforeach
+            @if ($userAppointments->count())
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th scope='col'> Physician </th>
+                            <th scope='col'> Patient </th>
+                            <th scope='col'> Date </th>
+                            <th scope='col'> Time </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($userAppointments as $apt)
+                            <tr>
+                                <td> <a style='color: green;' href="/appointment/{{ $apt->id }}/edit">
+                                     <span class="fas fa-pencil-alt"></span></a> {{ $apt->physician }} </td>
+                                <td> {{ $apt->name }} </td>
+                                <td> {{ $apt->appointment_date }} </td>
+                                <td>
+                                    <form method='POST' action='/appointment/delete/{{ $apt->id }}'>
+                                        {{ csrf_field() }}
+                                        {{ $apt->appointment_time }}
+                                        <button style='border: none; background: none; color: red; cursor: pointer;' type='submit' class="fas fa-trash-alt"></button>
+                                    </form>
+                                 </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <h3 class='text-center'> No Appointments </h3>
+            @endif
         </div>
-    @else
-        <h3 class='text-center'> No Appointments </h3>
-    @endif
+    </div>
 </div>
 @endsection

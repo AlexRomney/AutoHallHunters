@@ -6,7 +6,7 @@ interface AppointmentInterface
 {
     public function all();
 
-    public function show($id);
+    public function edit($id);
 
     public function create(array $data);
 

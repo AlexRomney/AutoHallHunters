@@ -24,7 +24,7 @@ class AppointmentRepository implements AppointmentInterface
         return $this->model->where('user_id', $id)->get();
     }
 
-    public function show($id)
+    public function edit($id)
     {
         return $this->model->findOrFail($id);
     }
@@ -49,10 +49,5 @@ class AppointmentRepository implements AppointmentInterface
     public function delete($id)
     {
         return $this->model->destroy($id);
-    }
-
-    public function getModel()
-    {
-        return $this->model;
     }
 }

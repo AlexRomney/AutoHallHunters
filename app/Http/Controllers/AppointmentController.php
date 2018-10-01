@@ -31,23 +31,27 @@ class AppointmentController extends Controller
     function store(Request $request)
     {
         $this->model->create($request->all());
+        flash('YOUR APPOINTMENT HAS BEEN CREATED')->success();
         return redirect('home');
     }
 
-    function show($id)
+    function edit($id)
     {
-        $edit = $this->model->show($id);
+        $edit = $this->model->edit($id);
         return view('edit_appointment', compact('edit'));
     }
 
     function update(Request $request, $id)
     {
         $this->model->update($request->all(), $id);
+        flash('YOUR APPOINTMENT HAS BEEN UPDATED')->success();
         return redirect('home');
     }
 
     function destroy($id)
     {
-        return $this->model->delete($id);
+        $this->model->delete($id);
+        flash('YOUR APPOINTMENT HAS BEEN DELETED')->error();
+        return redirect('home');
     }
 }
