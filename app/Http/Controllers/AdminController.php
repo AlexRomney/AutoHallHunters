@@ -38,7 +38,7 @@ class AdminController extends Controller
     function destroy($id)
     {
         $this->model->delete($id);
-        flash("APPOINTMENT #$id HAS BEEN DELETED")->error();
+        flash("APPOINTMENT #$id HAS BEEN CANCELLED")->error();
         return redirect('admin/appointments');
     }
 }

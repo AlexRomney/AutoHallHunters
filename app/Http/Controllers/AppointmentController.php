@@ -51,7 +51,7 @@ class AppointmentController extends Controller
     function destroy($id)
     {
         $this->model->delete($id);
-        flash('YOUR APPOINTMENT HAS BEEN DELETED')->error();
+        flash('YOUR APPOINTMENT HAS BEEN CANCELLED')->error();
         return redirect('home');
     }
 }
