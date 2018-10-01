@@ -14,7 +14,6 @@
                 <table class='table table-hover'>
                     <thead>
                         <tr>
-                            <th scope='col'> Appointment # </th>
                             <th scope='col'> Physician </th>
                             <th scope='col'> Patient </th>
                             <th scope='col'> Date </th>
@@ -26,8 +25,7 @@
                         @foreach ($allAppointments as $apt)
                             <tr>
                                 <td> <a style='color: green;' href="appointment/{{ $apt->id }}/edit">
-                                     <span class="fas fa-pencil-alt"></span></a> {{ $apt->id }} </td>
-                                <td> {{ $apt->physician }} </td>
+                                     <span class="fas fa-pencil-alt"></span></a> {{ $apt->physician }} </td>
                                 <td> {{ $apt->name }} </td>
                                 <td> {{ $apt->appointment_date }} </td>
                                 <td> {{ $apt->appointment_time }} </td>
